@@ -1,0 +1,11 @@
+﻿namespace RhTech.Core.Domain.Entities
+{
+    public class Empresa
+    {
+        public int Id { get; set; }
+
+        public string Cnpj { get; set; }
+
+        public string NomeFantasia { get; set; }
+    }
+}
