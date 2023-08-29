@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using RHTech.Infra.Data;
+using RHTech.WebApplication;
 
 var builder = WebApplication.CreateBuilder(args);
 

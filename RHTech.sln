@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RHTech.WebApplication", "RHTech.WebApplication\RHTech.WebApplication.csproj", "{F449B85A-852F-42BA-86E5-5A89D7F1BD9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhTech.WebApplication", "RHTech.WebApplication\RhTech.WebApplication.csproj", "{F449B85A-852F-42BA-86E5-5A89D7F1BD9B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RHTech.Infra.Data", "RHTech.Infra.Data\RHTech.Infra.Data.csproj", "{95EDCE6A-15C5-482E-9AD8-1E05C7040E23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RhTech.Infra.Data", "RHTech.Infra.Data\RhTech.Infra.Data.csproj", "{95EDCE6A-15C5-482E-9AD8-1E05C7040E23}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhTech.Core.Domain", "RhTech.Core.Domain\RhTech.Core.Domain.csproj", "{CB963816-4CAC-4A06-9137-E986843B17DA}"
 EndProject

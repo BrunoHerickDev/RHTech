@@ -1,49 +1,254 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@using System.Security.Principal
+
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - RHTech.WebApplication</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/RHTech.WebApplication.styles.css" asp-append-version="true" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TechR - @ViewData["Title"]</title>
+        
+    <link href="~/limitless/assets/fonts/inter/inter.css" rel="stylesheet" type="text/css">
+    <link href="~/limitless/assets/icons/phosphor/styles.min.css" rel="stylesheet" type="text/css">
+    <link href="~/limitless/assets/css/ltr/all.min.css" id="stylesheet" rel="stylesheet" type="text/css">    
+
+    @await RenderSectionAsync("Styles", required: false)
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RHTech.WebApplication</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+<div class="navbar navbar-dark navbar-expand-xl navbar-static shadow">
+        <div class="container-fluid">
+            <div class="d-flex d-xl-none me-2">
+                <button type="button" class="navbar-toggler sidebar-mobile-main-toggle rounded-pill">
+                    <i class="ph-list"></i>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <button type="button" class="navbar-toggler sidebar-mobile-secondary-toggle rounded-pill">
+                    <i class="ph-arrow-left"></i>
+                </button>
+            </div>
+
+            <div class="navbar-brand flex-1">
+                <a asp-action="Index" asp-controller="Home" class="d-inline-flex align-items-center">
+                    <img src="~/limitless/assets/images/logo_icon.svg" alt="">
+                    <img src="~/limitless/assets/images/logo_text_light.svg" class="d-none d-sm-inline-block h-16px invert-dark ms-3" alt="">
+                </a>
+            </div>
+
+            <div class="d-xl-none ms-3">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-demo-dark">
+                    <i class="ph-list"></i>
+                </button>
+            </div>
+
+            <div class="navbar-collapse collapse order-2 order-xl-1" id="navbar-demo-dark">
+                <ul class="navbar-nav mt-2 mt-xl-0">
+                    <li class="nav-item ms-xl-1">
+                        <a href="#" class="navbar-nav-link rounded">
+                            <i class="ph-cloud-arrow-down me-2"></i>
+                            Painel de Vagas
+                        </a>
+                    </li>
+
+                    <li class="nav-item ms-xl-1">
+                        <a href="https://www.office.com/" target="_blank" class="navbar-nav-link rounded">
+                            <img src="~/limitless/assets/images/microsoft365.png" class="me-2" width="20" height="20" alt="">
+                            Microsoft 365
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <ul class="nav gap-1 flex-xl-1 justify-content-end order-0 order-xl-1">
+                <li class="nav-item nav-item-dropdown-xl dropdown">
+                    <a href="#" class="navbar-nav-link navbar-nav-link-icon rounded-pill" data-bs-toggle="dropdown">
+                        <i class="ph-squares-four"></i>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-scrollable-sm wmin-xl-400 p-0">
+                        <div class="d-flex align-items-center border-bottom p-3">
+                            <h6 class="mb-0">Navegar pelos apps</h6>
+                            <a href="#" class="ms-auto">
+                                Visualizar Todos
+                                <i class="ph-arrow-circle-right ms-1"></i>
+                            </a>
+                        </div>
+
+                        <div class="row row-cols-1 row-cols-sm-2 g-0">
+                            <div class="col">
+                                <button type="button" class="dropdown-item text-wrap h-100 align-items-start border-end-sm border-bottom p-3">
+                                    <div>
+                                        <img src="~/limitless/assets/images/Microsoft_Teams-Logo.wine.png" class="h-40px mb-2" alt="">
+                                        <div class="fw-semibold my-1">Microsoft Teams</div>
+                                        <div class="text-muted">Hub de colaboração em equipe no Microsoft 365.</div>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="col">
+                                <button type="button" class="dropdown-item text-wrap h-100 align-items-start border-bottom p-3">
+                                    <div>
+                                        <img src="~/limitless/assets/images/outlook-logo-icon.png" class="h-40px mb-2" alt="">
+                                        <div class="fw-semibold my-1">Outlook</div>
+                                        <div class="text-muted">Conecte-se, organize-se e realize tarefas com email e calendário.</div>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="col">
+                                <button type="button" class="dropdown-item text-wrap h-100 align-items-start border-end-sm border-bottom border-bottom-sm-0 rounded-bottom-start p-3">
+                                    <div>
+                                        <img src="~/limitless/assets/images/onedrive.png" class="h-40px mb-2" alt="">
+                                        <div class="fw-semibold my-1">OneDrive</div>
+                                        <div class="text-muted"> Compartilhe arquivos e fotos online para acessar em qualquer dispositivo.</div>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="col">
+                                <button type="button" class="dropdown-item text-wrap h-100 align-items-start rounded-bottom-end p-3">
+                                    <div>
+                                        <img src="~/limitless/assets/images/sharepoint.svg" class="h-40px mb-2" alt="">
+                                        <div class="fw-semibold my-1">SharePoint</div>
+                                        <div class="text-muted">Solução de intranet para compartilhar arquivos e trabalho colaborativo.</div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item nav-item-dropdown-xl dropdown">
+                    <a href="#" class="navbar-nav-link align-items-center rounded-pill p-1" data-bs-toggle="dropdown">
+                        <div class="status-indicator-container">
+                            <img src="~/limitless/assets/images/demo/users/face11.jpg" class="w-32px h-32px rounded-pill" alt="">
+                            <span class="status-indicator bg-success"></span>
+                        </div>
+                        <span class="d-none d-md-inline-block mx-md-2">@User.Identity?.Name</span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a href="#" class="dropdown-item">
+                            <i class="ph-user-circle me-2"></i>
+                            Meu Perfil
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignOut">
+                            <i class="ph-sign-out me-2"></i>
+                            Sair do Sistema
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="sidebar sidebar-dark sidebar-main sidebar-expand-xl sidebar-main-resized">
+            <div class="sidebar-content">
+                <div class="sidebar-section">
+                    <div class="sidebar-section-body d-flex justify-content-center pb-1">
+                        <h5 class="sidebar-resize-hide flex-grow-1 my-auto">Menu de Navegação</h5>
+
+                        <div>
+                            <button type="button" class="btn btn-light btn-icon btn-sm rounded-pill border-transparent sidebar-control sidebar-main-resize d-none d-xl-inline-flex">
+                                <i class="ph-arrows-left-right"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-light btn-icon btn-sm rounded-pill border-transparent sidebar-mobile-main-toggle d-xl-none">
+                                <i class="ph-x"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-section">
+                    <ul class="nav nav-sidebar" data-nav-type="accordion">
+                        <li class="nav-item-header">
+                            <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">MENU PRINCIPAL</div>
+                            <i class="ph-dots-three sidebar-resize-show"></i>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a asp-action="Index" asp-controller="Home" class="nav-link">
+                                <i class="ph-house"></i>
+                                <span>
+                                    Dashboard
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item nav-item-submenu">
+                            <a href="#" class="nav-link">
+                                <i class="ph-users"></i>
+                                <span>Seleção de Candidatos</span>
+                            </a>
+                            <ul class="nav-group-sub collapse">
+                                <li class="nav-item"><a href="#" class="nav-link active">Candidatos</a></li>
+                                <li class="nav-item"><a asp-action="Index" asp-controller="Vagas" class="nav-link">Vagas</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-submenu">
+                            <a href="#" class="nav-link">
+                                <i class="ph-shield"></i>
+                                <span>Segurança</span>
+                            </a>
+                            <ul class="nav-group-sub collapse">
+                                <li class="nav-item"><a href="#" class="nav-link active">Usuários do Sistema</a></li>
+                                <li class="nav-item"><a href="#" class="nav-link">Perfis</a></li>
+                                <li class="nav-item"><a href="#" class="nav-link">Grupos</a></li>
+                                <li class="nav-item"><a href="#" class="nav-link">Permissões</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-submenu">
+                            <a href="#" class="nav-link">
+                                <i class="ph-gear"></i>
+                                <span>Configurações</span>
+                            </a>
+                            <ul class="nav-group-sub collapse">
+                                <li class="nav-item"><a href="#" class="nav-link active">Cadastro de Empresas</a></li>
+                                <li class="nav-item"><a href="#" class="nav-link">Parâmetros do Sistema</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="content-inner">
+                <div class="page-header page-header-light shadow">
+                    <div class="page-header-content container d-lg-flex">
+                        <div class="d-flex">
+                            <h4 class="page-title mb-0">
+                                @ViewData["Title"] - <span class="fw-normal"> @ViewData["SubTitle"]</span>
+                            </h4>
+
+                            <a href="#page_header" class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto" data-bs-toggle="collapse">
+                                <i class="ph-caret-down collapsible-indicator ph-sm m-1"></i>
+                            </a>
+                        </div>
+                    </div>                 
+                    <div class="page-header-content d-lg-flex border-top">
+                        <div class="d-flex">
+                            <div class="breadcrumb py-2">
+                                <a asp-action="Index" asp-controller="Home" class="breadcrumb-item"><i class="ph-house"></i> &nbsp; @ViewData["Title"]</a>
+                                <span class="breadcrumb-item active">@ViewData["SubTitle"]</span>
+                            </div>
+
+                            <a href="#breadcrumb_elements" class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto" data-bs-toggle="collapse">
+                                <i class="ph-caret-down collapsible-indicator ph-sm m-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <main role="main" class="content">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - RHTech.WebApplication - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/limitless/assets/js/jquery/jquery.min.js"></script>
+    <script src="~/limitless/assets/js/bootstrap/bootstrap.bundle.min.js"></script> 
+    <script src="~/limitless/assets/js/app.js"></script>
+    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
