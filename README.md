@@ -3,10 +3,10 @@
 Desenvolvi um crud para Candidatos e Empresas num sistema fictício de recrutamento e seleção de candidatos.
 Utilizei Arquitetura Clean, .net 6.0, Razor + jquery no front.
 
-# RhTech.Core.Application
+## RhTech.Core.Application
    Onde implementa regras da aplicação. Validadores, Helpers, Mappings, ViewModels.
 
-# RhTech.Core.Domain
+## RhTech.Core.Domain
    Onde ficam as regras do negócio e entidades de banco de dados.
 
 ## RhTech.Infra.Data   
