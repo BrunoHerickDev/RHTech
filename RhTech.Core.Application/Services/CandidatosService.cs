@@ -25,6 +25,9 @@ namespace RhTech.Core.Application.Services
             if (candidato == null)
                 throw new Exception("Candidato não existe.");
 
+            if (!ValidaCNPJ.CpfValido(viewModel.Cpf))
+                throw new Exception("Cpf inválido.");
+
             candidato.Cpf = viewModel.Cpf.Replace(".", "").Replace("-", "");
 
             candidato.DataNascimento = viewModel.DataNascimento;
@@ -42,7 +45,9 @@ namespace RhTech.Core.Application.Services
             if (!ValidaCNPJ.CpfValido(candidato.Cpf))
                 throw new Exception("Cpf inválido.");
 
-            if (!candidato.Genero.Equals("M") || !candidato.Genero.Equals("F"))
+            candidato.Cpf = viewModel.Cpf.Replace(".", "").Replace("-", "");
+
+            if (!candidato.Genero.Equals('M') && !candidato.Genero.Equals('F'))
                 throw new Exception("Gênero Inválido.");
 
             await _candidatosRepository.Cadastrar(candidato);
