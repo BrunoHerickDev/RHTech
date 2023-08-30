@@ -9,6 +9,8 @@ Utilizei Arquitetura Clean, .net 6.0, Razor + jquery no front.
 # RhTech.Core.Domain
    Onde ficam as regras do negócio e entidades de banco de dados.
 
+# Configurando a solução
+
 1. Criar um Banco de Dados chamado RhTech  no SQL Server
 
 2. Atualizar a connection string no appsettings
