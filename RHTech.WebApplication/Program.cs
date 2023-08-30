@@ -4,6 +4,7 @@ using RHTech.WebApplication;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+                .AddRazorRuntimeCompilation();
 
 builder.Services.AddDbContext<RhTechDbContext>(x=>x.UseSqlServer(builder.Configuration.GetConnectionString("RhTechConnection"), b => b.MigrationsAssembly("RHTech.WebApplication")));
 
