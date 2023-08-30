@@ -1,4 +1,4 @@
-﻿@model RhTech.Core.Domain.Entities.Empresa
+﻿@model RhTech.Core.Application.ViewModels.EmpresaViewModel
 
 @{
     ViewData["Title"] = "Cadastrar Empresa";
@@ -13,7 +13,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label asp-for="Cnpj" class="control-label"></label>
-                            <input asp-for="Cnpj" class="form-control" />
+                            <input asp-for="Cnpj" class="form-control cnpj" />
                             <span asp-validation-for="Cnpj" class="text-danger"></span>
                         </div>
                     </div>

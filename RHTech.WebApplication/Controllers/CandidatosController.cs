@@ -1,41 +1,38 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using RhTech.Core.Domain.Entities;
-using RHTech.Infra.Data;
+using RhTech.Core.Application.Interfaces;
+using RhTech.Core.Application.ViewModels;
 
 namespace RhTech.WebApplication.Controllers
 {
     public class CandidatosController : Controller
     {
-        private readonly RhTechDbContext _context;
+        private readonly ICandidatosService _candidatosService;
 
-        public CandidatosController(RhTechDbContext context)
+        public CandidatosController(ICandidatosService candidatosService)
         {
-            _context = context;
+            _candidatosService = candidatosService;
         }
 
-        // GET: Candidatos
         public async Task<IActionResult> Index()
         {
-              return _context.Candidatos != null ? 
-                          View(await _context.Candidatos.ToListAsync()) :
-                          Problem("Entity set 'RhTechDbContext.Candidatos'  is null.");
+            var candidatos = await _candidatosService.ObterLista();
+
+            return candidatos != null ?
+                        View(candidatos) :
+                        Problem("Entidade Candidatos é nula");
         }
 
         // GET: Candidatos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Candidatos == null)
-            {
+            if (id == null)
                 return NotFound();
-            }
 
-            var candidato = await _context.Candidatos
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var candidato = await _candidatosService.ObterPorId(id.GetValueOrDefault());
+
             if (candidato == null)
-            {
                 return NotFound();
-            }
 
             return View(candidato);
         }
@@ -51,30 +48,29 @@ namespace RhTech.WebApplication.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NomeCompleto,Cpf,DataNascimento,Genero,Nacionalidade")] Candidato candidato)
+        public async Task<IActionResult> Create([Bind("Id,NomeCompleto,Cpf,DataNascimento,Genero,Nacionalidade")] CandidatoViewModel candidato)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(candidato);
-                await _context.SaveChangesAsync();
+                await _candidatosService.Cadastrar(candidato);
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(candidato);
         }
 
         // GET: Candidatos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Candidatos == null)
-            {
+            if (id == null)
                 return NotFound();
-            }
 
-            var candidato = await _context.Candidatos.FindAsync(id);
+            var candidato = await _candidatosService.ObterPorId(id.GetValueOrDefault());
+
             if (candidato == null)
-            {
                 return NotFound();
-            }
+
             return View(candidato);
         }
 
@@ -83,7 +79,7 @@ namespace RhTech.WebApplication.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NomeCompleto,Cpf,DataNascimento,Genero,Nacionalidade")] Candidato candidato)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NomeCompleto,Cpf,DataNascimento,Genero,Nacionalidade")] CandidatoViewModel candidato)
         {
             if (id != candidato.Id)
             {
@@ -94,12 +90,12 @@ namespace RhTech.WebApplication.Controllers
             {
                 try
                 {
-                    _context.Update(candidato);
-                    await _context.SaveChangesAsync();
+                    await _candidatosService.Alterar(candidato);
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CandidatoExists(candidato.Id))
+                    if (!await CandidatoExistsAsync(candidato.Id))
                     {
                         return NotFound();
                     }
@@ -110,23 +106,21 @@ namespace RhTech.WebApplication.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             return View(candidato);
         }
 
         // GET: Candidatos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Candidatos == null)
-            {
+            if (id == null)
                 return NotFound();
-            }
 
-            var candidato = await _context.Candidatos
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var candidato = await _candidatosService.ObterPorId(id.GetValueOrDefault());
+
             if (candidato == null)
-            {
                 return NotFound();
-            }
+
 
             return View(candidato);
         }
@@ -136,23 +130,21 @@ namespace RhTech.WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Candidatos == null)
+            var candidato = await _candidatosService.ObterPorId(id);
+
+            if (candidato == null)
             {
-                return Problem("Entity set 'RhTechDbContext.Candidatos'  is null.");
+                return Problem("Entidade candidato é nula.");
             }
-            var candidato = await _context.Candidatos.FindAsync(id);
-            if (candidato != null)
-            {
-                _context.Candidatos.Remove(candidato);
-            }
-            
-            await _context.SaveChangesAsync();
+
+            await _candidatosService.Remover(candidato.Id);
+
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CandidatoExists(int id)
+        private async Task<bool> CandidatoExistsAsync(int id)
         {
-          return (_context.Candidatos?.Any(e => e.Id == id)).GetValueOrDefault();
+            return await _candidatosService.ObterPorId(id) != null;
         }
     }
 }

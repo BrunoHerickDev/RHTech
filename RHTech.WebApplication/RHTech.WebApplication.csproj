@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.21" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.21" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.21">
@@ -30,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RhTech.Core.Application\RhTech.Core.Application.csproj" />
     <ProjectReference Include="..\RHTech.Infra.Data\RhTech.Infra.Data.csproj" />
   </ItemGroup>
 

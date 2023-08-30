@@ -1,4 +1,4 @@
-﻿@model RhTech.Core.Domain.Entities.Candidato
+﻿@model RhTech.Core.Application.ViewModels.CandidatoViewModel
 
 @{
     ViewData["Title"] = "Candidatos";
@@ -23,7 +23,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label asp-for="Cpf" class="control-label"></label>
-                                <input asp-for="Cpf" class="form-control" />
+                                <input asp-for="Cpf" class="form-control cpf" />
                                 <span asp-validation-for="Cpf" class="text-danger"></span>
                             </div>
                         </div>

@@ -1,89 +1,79 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using RhTech.Core.Domain.Entities;
-using RHTech.Infra.Data;
+using RhTech.Core.Application.Interfaces;
+using RhTech.Core.Application.ViewModels;
 
 namespace RhTech.WebApplication.Controllers
 {
     public class EmpresasController : Controller
     {
-        private readonly RhTechDbContext _context;
+        private readonly IEmpresasService _empresasService;
 
-        public EmpresasController(RhTechDbContext context)
+        public EmpresasController(IEmpresasService empresasService)
         {
-            _context = context;
+            _empresasService = empresasService;
         }
 
-        // GET: Empresas
         public async Task<IActionResult> Index()
         {
-              return _context.Empresas != null ? 
-                          View(await _context.Empresas.ToListAsync()) :
-                          Problem("Entity set 'RhTechDbContext.Empresas'  is null.");
+            var empresas = await _empresasService.ObterLista();
+
+            return empresas != null ?
+                        View(empresas) :
+                        Problem("Entidade Empresa é nula");
         }
 
-        // GET: Empresas/Details/5
+
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Empresas == null)
-            {
+            if (id == null)
                 return NotFound();
-            }
 
-            var empresa = await _context.Empresas
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var empresa = await _empresasService.ObterPorId(id.GetValueOrDefault());
+
             if (empresa == null)
-            {
                 return NotFound();
-            }
 
             return View(empresa);
         }
 
-        // GET: Empresas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Empresas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Cnpj,NomeFantasia")] Empresa empresa)
+        public async Task<IActionResult> Create([Bind("Id,Cnpj,NomeFantasia")] EmpresaViewModel empresa)
         {
+
             if (ModelState.IsValid)
             {
-                _context.Add(empresa);
-                await _context.SaveChangesAsync();
+                await _empresasService.Cadastrar(empresa);
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(empresa);
         }
 
         // GET: Empresas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Empresas == null)
-            {
+            if (id == null)
                 return NotFound();
-            }
 
-            var empresa = await _context.Empresas.FindAsync(id);
+            var empresa = await _empresasService.ObterPorId(id.GetValueOrDefault());
+
             if (empresa == null)
-            {
                 return NotFound();
-            }
+
             return View(empresa);
         }
 
-        // POST: Empresas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Cnpj,NomeFantasia")] Empresa empresa)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Cnpj,NomeFantasia")] EmpresaViewModel empresa)
         {
             if (id != empresa.Id)
             {
@@ -94,12 +84,12 @@ namespace RhTech.WebApplication.Controllers
             {
                 try
                 {
-                    _context.Update(empresa);
-                    await _context.SaveChangesAsync();
+                    await _empresasService.Alterar(empresa);
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EmpresaExists(empresa.Id))
+                    if (!await EmpresaExistsAsync(empresa.Id))
                     {
                         return NotFound();
                     }
@@ -110,49 +100,43 @@ namespace RhTech.WebApplication.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             return View(empresa);
         }
 
-        // GET: Empresas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Empresas == null)
-            {
+            if (id == null)
                 return NotFound();
-            }
 
-            var empresa = await _context.Empresas
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var empresa = await _empresasService.ObterPorId(id.GetValueOrDefault());
+
             if (empresa == null)
-            {
                 return NotFound();
-            }
+
 
             return View(empresa);
         }
 
-        // POST: Empresas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Empresas == null)
+            var empresa = await _empresasService.ObterPorId(id);
+
+            if (empresa == null)
             {
-                return Problem("Entity set 'RhTechDbContext.Empresas'  is null.");
+                return Problem("Entidade empresa é nula.");
             }
-            var empresa = await _context.Empresas.FindAsync(id);
-            if (empresa != null)
-            {
-                _context.Empresas.Remove(empresa);
-            }
-            
-            await _context.SaveChangesAsync();
+
+            await _empresasService.Remover(empresa.Id);
+
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EmpresaExists(int id)
+        private async Task<bool> EmpresaExistsAsync(int id)
         {
-          return (_context.Empresas?.Any(e => e.Id == id)).GetValueOrDefault();
+            return await _empresasService.ObterPorId(id) != null;
         }
     }
 }

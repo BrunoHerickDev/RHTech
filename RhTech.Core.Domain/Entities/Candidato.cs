@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace RhTech.Core.Domain.Entities
+﻿namespace RhTech.Core.Domain.Entities
 {
     public class Candidato : BaseEntity
     {
