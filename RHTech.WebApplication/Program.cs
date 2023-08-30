@@ -1,10 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using RHTech.WebApplication;
+using RHTech.Infra.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
+
 
 builder.Services.AddDbContext<RhTechDbContext>(x=>x.UseSqlServer(builder.Configuration.GetConnectionString("RhTechConnection"), b => b.MigrationsAssembly("RHTech.WebApplication")));
 

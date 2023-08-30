@@ -1,53 +1,89 @@
 ﻿@model RhTech.Core.Domain.Entities.Candidato
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Candidatos";
+    ViewData["SubTitle"] = "Cadastro";
 }
 
-<h1>Create</h1>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="NomeCompleto" class="control-label"></label>
+                                <input asp-for="NomeCompleto" class="form-control" />
+                                <span asp-validation-for="NomeCompleto" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Cpf" class="control-label"></label>
+                                <input asp-for="Cpf" class="form-control" />
+                                <span asp-validation-for="Cpf" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
 
-<h4>Candidato</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="NomeCompleto" class="control-label"></label>
-                <input asp-for="NomeCompleto" class="form-control" />
-                <span asp-validation-for="NomeCompleto" class="text-danger"></span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="DataNascimento" class="control-label"></label>
+                                <input asp-for="DataNascimento" class="form-control" />
+                                <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Genero" class="control-label"></label>
+                                <input asp-for="Genero" class="form-control" />
+                                <span asp-validation-for="Genero" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Nacionalidade" class="control-label"></label>
+                                <input asp-for="Nacionalidade" class="form-control" />
+                                <span asp-validation-for="Nacionalidade" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+                   
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-primary btn-labeled btn-labeled-start" asp-action="Create">
+                                <span class="btn-labeled-icon bg-black bg-opacity-20">
+                                    <i class="ph-check-square-offset"></i>
+                                </span>
+                                Cadastrar
+                            </button>
+                            <a class="btn btn-danger btn-labeled btn-labeled-start" asp-action="Index">
+                                <span class="btn-labeled-icon bg-black bg-opacity-20">
+                                    <i class="ph-arrow-arc-left"></i>
+                                </span>
+                                Voltar
+                            </a>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="Cpf" class="control-label"></label>
-                <input asp-for="Cpf" class="form-control" />
-                <span asp-validation-for="Cpf" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataNascimento" class="control-label"></label>
-                <input asp-for="DataNascimento" class="form-control" />
-                <span asp-validation-for="DataNascimento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Genero" class="control-label"></label>
-                <input asp-for="Genero" class="form-control" />
-                <span asp-validation-for="Genero" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Nacionalidade" class="control-label"></label>
-                <input asp-for="Nacionalidade" class="form-control" />
-                <span asp-validation-for="Nacionalidade" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+    </div>
+    <div class="card-footer">
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

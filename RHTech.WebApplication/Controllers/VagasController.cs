@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RhTech.Core.Domain.Entities;
-using RHTech.WebApplication;
+using RHTech.Infra.Data;
 
 namespace RhTech.WebApplication.Controllers
 {

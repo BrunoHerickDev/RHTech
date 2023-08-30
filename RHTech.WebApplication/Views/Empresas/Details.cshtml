@@ -4,27 +4,43 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">Detalhes da Empresa - (@Html.DisplayFor(model => model.NomeFantasia))</h5>
+    </div>
 
-<div>
-    <h4>Empresa</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cnpj)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cnpj)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NomeFantasia)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NomeFantasia)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div class="card-body">
+          <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Cnpj)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Cnpj)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NomeFantasia)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NomeFantasia)
+            </dd>
+        </dl>
+        <div class="row">
+            <div class="col-md-6">
+                <a class="btn btn-primary btn-labeled btn-labeled-start" asp-action="Edit" asp-route-id="@Model?.Id">
+                    <span class="btn-labeled-icon bg-black bg-opacity-20">
+                        <i class="ph-pencil"></i>
+                    </span>
+                    Alterar
+                </a>
+                <a class="btn btn-danger btn-labeled btn-labeled-start" asp-action="Index">
+                    <span class="btn-labeled-icon bg-black bg-opacity-20">
+                        <i class="ph-arrow-arc-left"></i>
+                    </span>
+                    Voltar
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+    </div>
 </div>

@@ -1,49 +1,75 @@
 ﻿@model IEnumerable<RhTech.Core.Domain.Entities.Empresa>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Empresas";
 }
 
-<h1>Empresas</h1>
 
-<p>
-    <a class="btn btn-success" asp-action="Create">Cadastrar</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Cnpj)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NomeFantasia)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cnpj)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NomeFantasia)
-                </td>
-                <td>
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">Empresas</h5>
+    </div>
 
-                    <a asp-action="Edit" asp-route-id="@item.Id">
-                        <i class="ph-note-pencil"></i>
-                    </a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">
-                        <i class="ph-magnifying-glass"></i>
-                    </a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">
-                        <i class="ph-trash"></i>
-                    </a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <div class="card-body">
+        <a class="btn btn-primary btn-labeled btn-labeled-start" asp-action="Create">
+            <span class="btn-labeled-icon bg-black bg-opacity-20">
+                <i class="ph-check-square-offset"></i>
+            </span>
+            Cadastrar
+        </a>
+
+        <hr />
+
+        <table id="tabelaPrincipal" class="table table-bordered table-condensed">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Cnpj)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NomeFantasia)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="3">Nenhuma empresa cadastrada.</td>
+                    </tr>
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cnpj)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NomeFantasia)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">
+                                <i class="text-success ph-note-pencil"></i>
+                            </a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">
+                                <i class="text-info ph-magnifying-glass"></i>
+                            </a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">
+                                <i class="text-danger ph-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <br />
+
+    <div class="card-footer">
+    </div>
+</div>
+
+
+

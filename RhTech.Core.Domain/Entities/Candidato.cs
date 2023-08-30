@@ -1,9 +1,9 @@
-﻿namespace RhTech.Core.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RhTech.Core.Domain.Entities
 {
-    public class Candidato
+    public class Candidato : BaseEntity
     {
-        public int Id { get; set; }
-        
         public string NomeCompleto { get; set; }
 
         public string Cpf { get; set; }
@@ -13,6 +13,5 @@
         public char Genero { get; set; }
 
         public string Nacionalidade { get; set; }
-
     }
 }

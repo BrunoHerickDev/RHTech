@@ -7,16 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>TechR - @ViewData["Title"]</title>
-        
+
     <link href="~/limitless/assets/fonts/inter/inter.css" rel="stylesheet" type="text/css">
     <link href="~/limitless/assets/icons/phosphor/styles.min.css" rel="stylesheet" type="text/css">
-    <link href="~/limitless/assets/css/ltr/all.min.css" id="stylesheet" rel="stylesheet" type="text/css">    
+    <link href="~/limitless/assets/css/ltr/all.min.css" id="stylesheet" rel="stylesheet" type="text/css">
 
     @await RenderSectionAsync("Styles", required: false)
 </head>
 
 <body>
-<div class="navbar navbar-dark navbar-expand-xl navbar-static shadow">
+    <div class="navbar navbar-dark navbar-expand-xl navbar-static shadow">
         <div class="container-fluid">
             <div class="d-flex d-xl-none me-2">
                 <button type="button" class="navbar-toggler sidebar-mobile-main-toggle rounded-pill">
@@ -47,14 +47,7 @@
                             <i class="ph-cloud-arrow-down me-2"></i>
                             Painel de Vagas
                         </a>
-                    </li>
-
-                    <li class="nav-item ms-xl-1">
-                        <a href="https://www.office.com/" target="_blank" class="navbar-nav-link rounded">
-                            <img src="~/limitless/assets/images/microsoft365.png" class="me-2" width="20" height="20" alt="">
-                            Microsoft 365
-                        </a>
-                    </li>
+                    </li>     
                 </ul>
             </div>
 
@@ -179,20 +172,8 @@
                                 <span>Seleção de Candidatos</span>
                             </a>
                             <ul class="nav-group-sub collapse">
-                                <li class="nav-item"><a href="#" class="nav-link active">Candidatos</a></li>
+                                <li class="nav-item"><a asp-action="Index" asp-controller="Candidatos" class="nav-link">Candidatos</a></li>
                                 <li class="nav-item"><a asp-action="Index" asp-controller="Vagas" class="nav-link">Vagas</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link">
-                                <i class="ph-shield"></i>
-                                <span>Segurança</span>
-                            </a>
-                            <ul class="nav-group-sub collapse">
-                                <li class="nav-item"><a href="#" class="nav-link active">Usuários do Sistema</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Perfis</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Grupos</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link">Permissões</a></li>
                             </ul>
                         </li>
                         <li class="nav-item nav-item-submenu">
@@ -201,7 +182,7 @@
                                 <span>Configurações</span>
                             </a>
                             <ul class="nav-group-sub collapse">
-                                <li class="nav-item"><a href="#" class="nav-link active">Cadastro de Empresas</a></li>
+                                <li class="nav-item"><a asp-action="Index" asp-controller="Empresas" class="nav-link">Cadastro de Empresas</a></li>
                                 <li class="nav-item"><a href="#" class="nav-link">Parâmetros do Sistema</a></li>
                             </ul>
                         </li>
@@ -214,16 +195,9 @@
             <div class="content-inner">
                 <div class="page-header page-header-light shadow">
                     <div class="page-header-content container d-lg-flex">
-                        <div class="d-flex">
-                            <h4 class="page-title mb-0">
-                                @ViewData["Title"] - <span class="fw-normal"> @ViewData["SubTitle"]</span>
-                            </h4>
-
-                            <a href="#page_header" class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto" data-bs-toggle="collapse">
-                                <i class="ph-caret-down collapsible-indicator ph-sm m-1"></i>
-                            </a>
+                        <div class="d-flex">       
                         </div>
-                    </div>                 
+                    </div>
                     <div class="page-header-content d-lg-flex border-top">
                         <div class="d-flex">
                             <div class="breadcrumb py-2">
@@ -246,9 +220,13 @@
     </div>
 
     <script src="~/limitless/assets/js/jquery/jquery.min.js"></script>
-    <script src="~/limitless/assets/js/bootstrap/bootstrap.bundle.min.js"></script> 
+    <script src="~/limitless/assets/js/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="~/limitless/assets/js/app.js"></script>
-    
+    <script src="~/limitless/assets/js/vendor/tables/datatables/datatables.min.js"></script>
+    <script>
+        let table = new DataTable('#tabelaPrincipal');
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

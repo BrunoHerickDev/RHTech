@@ -1,28 +1,28 @@
-﻿using Microsoft.EntityFrameworkCore;
-using RhTech.Core.Domain.Entities;
+﻿//using Microsoft.EntityFrameworkCore;
+//using RhTech.Core.Domain.Entities;
 
-namespace RHTech.WebApplication
-{
-    public class RhTechDbContext : DbContext
-    {
-        public RhTechDbContext(DbContextOptions options) : base(options) { }
+//namespace RHTech.WebApplication
+//{
+//    public class RhTechDbContext : DbContext
+//    {
+//        public RhTechDbContext(DbContextOptions options) : base(options) { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                .AddJsonFile("appsettings.json")
-                .Build();
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("RhTechConnection"));
-        }
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//        {
+//            IConfigurationRoot configuration = new ConfigurationBuilder()
+//                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+//                .AddJsonFile("appsettings.json")
+//                .Build();
+//            optionsBuilder.UseSqlServer(configuration.GetConnectionString("RhTechConnection"));
+//        }
 
-        public RhTechDbContext() { }
+//        public RhTechDbContext() { }
 
-        public DbSet<Candidato> Candidatos { get; set; }
+//        public DbSet<Candidato> Candidatos { get; set; }
 
-        public DbSet<Vaga> Vagas { get; set; }
+//        public DbSet<Vaga> Vagas { get; set; }
 
-        public DbSet<Empresa> Empresas { get; set; }
+//        public DbSet<Empresa> Empresas { get; set; }
 
-    }
-}
+//    }
+//}

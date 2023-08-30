@@ -1,10 +1,57 @@
 ﻿@model RhTech.Core.Domain.Entities.Empresa
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Alterar Empresa";
 }
 
-<h1>Edit</h1>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Cnpj" class="control-label"></label>
+                            <input asp-for="Cnpj" class="form-control" />
+                            <span asp-validation-for="Cnpj" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="NomeFantasia" class="control-label"></label>
+                            <input asp-for="NomeFantasia" class="form-control" />
+                            <span asp-validation-for="NomeFantasia" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary btn-labeled btn-labeled-start">
+                            <span class="btn-labeled-icon bg-black bg-opacity-20">
+                                <i class="ph-check-square-offset"></i>
+                            </span>
+                            Salvar
+                        </button>
+                        <a class="btn btn-danger btn-labeled btn-labeled-start" asp-action="Index">
+                            <span class="btn-labeled-icon bg-black bg-opacity-20">
+                                <i class="ph-arrow-arc-left"></i>
+                            </span>
+                            Voltar
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br />
+
+    <div class="card-footer">
+    </div>
+</div>
+
+@*<h1>Edit</h1>
 
 <h4>Empresa</h4>
 <hr />
@@ -32,7 +79,7 @@
 
 <div>
     <a asp-action="Index">Back to List</a>
-</div>
+</div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

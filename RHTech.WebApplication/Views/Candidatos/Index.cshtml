@@ -1,59 +1,89 @@
 ﻿@model IEnumerable<RhTech.Core.Domain.Entities.Candidato>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Candidatos";
+    ViewData["SubTitle"] = "Lista";
 }
 
-<h1>Index</h1>
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">Empresas</h5>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NomeCompleto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cpf)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataNascimento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Genero)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nacionalidade)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomeCompleto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cpf)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataNascimento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genero)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nacionalidade)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <div class="card-body">
+        <a class="btn btn-primary btn-labeled btn-labeled-start" asp-action="Create">
+            <span class="btn-labeled-icon bg-black bg-opacity-20">
+                <i class="ph-check-square-offset"></i>
+            </span>
+            Cadastrar
+        </a>
+
+        <hr />
+        <div class="table-responsive">
+            <table id="tabelaPrincipal" class="table table-bordered table-condensed">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NomeCompleto)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Cpf)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DataNascimento)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Genero)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nacionalidade)
+                        </th>
+                        <th style="width:180px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="3">Nenhum Candidato cadastrado.</td>
+                        </tr>
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomeCompleto)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cpf)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DataNascimento)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Genero)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nacionalidade)
+                            </td>
+                            <td style="width:180px;">
+                                <a asp-action="Edit" asp-route-id="@item.Id">
+                                    <i class="text-success ph-note-pencil"></i>
+                                </a>
+                                &nbsp;
+                                <a asp-action="Details" asp-route-id="@item.Id">
+                                    <i class="text-info ph-magnifying-glass"></i>
+                                </a>
+                                &nbsp;
+                                <a asp-action="Delete" asp-route-id="@item.Id">
+                                    <i class="text-danger ph-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+        </div>
+    </div>
