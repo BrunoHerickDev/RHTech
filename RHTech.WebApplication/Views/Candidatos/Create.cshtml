@@ -1,8 +1,8 @@
-﻿@model RhTech.Core.Application.ViewModels.CandidatoViewModel
+﻿ront@model RhTech.Core.Application.ViewModels.CandidatoViewModel
 
 @{
     ViewData["Title"] = "Candidatos";
-    ViewData["SubTitle"] = "Cadastro";
+    ViewData["SubTitle"] = "Cadastrar";
 }
 
 <div class="card">
@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <form asp-action="Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -40,7 +40,12 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label asp-for="Genero" class="control-label"></label>
-                                <input asp-for="Genero" class="form-control" />
+
+                                <select asp-for="Genero" class="form-control">
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Feminino</option>
+                                </select>
+
                                 <span asp-validation-for="Genero" class="text-danger"></span>
                             </div>
                         </div>
@@ -57,7 +62,7 @@
                     </div>
 
                     <br />
-                   
+
                     <div class="row">
                         <div class="col-md-6">
                             <button type="submit" class="btn btn-primary btn-labeled btn-labeled-start" asp-action="Create">

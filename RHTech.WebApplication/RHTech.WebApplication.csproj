@@ -7,6 +7,38 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="Views\Candidatos\Create.cshtml" />
+    <None Include="Views\Candidatos\Delete.cshtml" />
+    <None Include="Views\Candidatos\Details.cshtml" />
+    <None Include="Views\Candidatos\Edit.cshtml" />
+    <None Include="Views\Candidatos\Index.cshtml" />
+    <None Include="Views\Empresas\Create.cshtml" />
+    <None Include="Views\Empresas\Delete.cshtml" />
+    <None Include="Views\Empresas\Details.cshtml" />
+    <None Include="Views\Empresas\Edit.cshtml" />
+    <None Include="Views\Empresas\Index.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Privacy.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Views\Views\Candidatos\Create.cshtml" />
+    <None Include="Views\Views\Candidatos\Delete.cshtml" />
+    <None Include="Views\Views\Candidatos\Details.cshtml" />
+    <None Include="Views\Views\Candidatos\Edit.cshtml" />
+    <None Include="Views\Views\Candidatos\Index.cshtml" />
+    <None Include="Views\Views\Empresas\Create.cshtml" />
+    <None Include="Views\Views\Empresas\Delete.cshtml" />
+    <None Include="Views\Views\Empresas\Details.cshtml" />
+    <None Include="Views\Views\Empresas\Edit.cshtml" />
+    <None Include="Views\Views\Empresas\Index.cshtml" />
+    <None Include="Views\Views\Home\Index.cshtml" />
+    <None Include="Views\Views\Home\Privacy.cshtml" />
+    <None Include="Views\Views\Shared\Error.cshtml" />
+    <None Include="Views\Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Views\Views\_ViewImports.cshtml" />
+    <None Include="Views\Views\_ViewStart.cshtml" />
     <None Include="wwwroot\limitless\assets\js\vendor\media\Archiver.app\Contents\Frameworks\Sparkle.framework\Versions\A\Resources\fr_CA.lproj" />
     <None Include="wwwroot\limitless\assets\js\vendor\media\Archiver.app\Contents\Frameworks\Sparkle.framework\Versions\A\Resources\pt.lproj" />
   </ItemGroup>

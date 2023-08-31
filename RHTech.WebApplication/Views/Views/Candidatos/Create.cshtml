@@ -9,7 +9,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-12">
-                <form asp-action="Edit">
+                <form asp-action="Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                     <div class="row">
@@ -65,11 +65,11 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <button type="submit" class="btn btn-primary btn-labeled btn-labeled-start">
+                            <button type="submit" class="btn btn-primary btn-labeled btn-labeled-start" asp-action="Create">
                                 <span class="btn-labeled-icon bg-black bg-opacity-20">
                                     <i class="ph-check-square-offset"></i>
                                 </span>
-                                Salvar
+                                Cadastrar
                             </button>
                             <a class="btn btn-danger btn-labeled btn-labeled-start" asp-action="Index">
                                 <span class="btn-labeled-icon bg-black bg-opacity-20">
